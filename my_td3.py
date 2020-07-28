@@ -108,6 +108,11 @@ class TD3(object):
   def train(self, replay_buffer, iterations, batch_size = 100, discount = 0.99, tau = 0.005, policy_noise = 0.2, noise_clip = 0.5, policy_freq = 2):
     for it in range(iterations):
       #Step 4 Sample batch of transitions (s,s', a, r) from the memory
-
+      batch_states, batch_next_states, batch_actions, batch_rewards,batch_dones = replay_buffer.sample(batch_size)
+      state = torch.Tensor(batch_states).to(device)
+      next_state = torch.Tensor(batch_next_states).to(device)
+      action = torch.Tensor(batch_actions).to(device)
+      reward = torch.Tensor(batch_rewards).to(device)
+      done = torch.Tensor(batch_dones).to(device)
 
 
