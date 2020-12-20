@@ -114,5 +114,8 @@ class TD3(object):
       action = torch.Tensor(batch_actions).to(device)
       reward = torch.Tensor(batch_rewards).to(device)
       done = torch.Tensor(batch_dones).to(device)
+      #step5: from next state s', the actor target plays the next action a'
+      next_action = self.actorTarget(next_state)
+
 
 
